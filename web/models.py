@@ -2,8 +2,8 @@ from django.db import models
 
 
 class User(models.Model):
-    f_name = models.CharField(max_length=25)
-    l_name = models.CharField(max_length=25)
+    f_name = models.CharField(max_length=25, verbose_name='Имя')
+    l_name = models.CharField(max_length=25, verbose_name='Фамилия')
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
 
     def __str__(self):
@@ -22,10 +22,10 @@ class Note(models.Model):
         (2, 'Income'),
     ]
     user = models.ForeignKey('User', on_delete=models.CASCADE, null=False)
-    sort = models.IntegerField(choices=SORT_CHOICES, null=False)
-    reason = models.CharField(max_length=50, null=False)
-    price = models.IntegerField(null=False)
-    date_time = models.DateTimeField(auto_now=True)
+    sort = models.IntegerField(choices=SORT_CHOICES, null=False, verbose_name='Вид транзакции')
+    reason = models.CharField(max_length=50, null=False, verbose_name='Причина')
+    price = models.IntegerField(null=False, verbose_name='Финансовая стоимость')
+    date_time = models.DateTimeField(auto_now=True, verbose_name='Дата и время создания')
 
     def __str__(self):
         return 'S'
